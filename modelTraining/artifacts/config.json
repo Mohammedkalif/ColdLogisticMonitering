@@ -1,0 +1,30 @@
+{
+  "n_past": 120,
+  "n_future": 30,
+  "features": [
+    "t_air_c",
+    "rh_pct",
+    "t_ambient_c",
+    "rh_ambient_pct",
+    "door_open",
+    "vehicle_moving",
+    "compressor_on",
+    "defrost_on",
+    "hod_sin",
+    "hod_cos"
+  ],
+  "cont_feats": [
+    "t_air_c",
+    "rh_pct",
+    "t_ambient_c",
+    "rh_ambient_pct"
+  ],
+  "targets": [
+    "t_air_c",
+    "rh_pct"
+  ],
+  "n_features": 10,
+  "hidden1": 64,
+  "hidden2": 32,
+  "dropout": 0.2
+}

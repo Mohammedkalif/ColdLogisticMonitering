@@ -1,0 +1,9 @@
+{
+  "predictionHorizonMinutes": 30,
+  "warningThresholdC": 7,
+  "criticalThresholdC": 8,
+  "temperaturePredictionAlerts": true,
+  "criticalRiskAlerts": true,
+  "modelVersion": "LSTM-v1",
+  "lastModelUpdate": "2026-08-27"
+}
