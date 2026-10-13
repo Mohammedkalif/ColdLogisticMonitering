@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: coldguard-monitor
+    runtime: node
+    plan: free
+    buildCommand: npm ci --prefix backend && npm ci --prefix coldchain-monitor-team && npm --prefix coldchain-monitor-team run build
+    startCommand: node backend/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_BASE_URL
+        value: /api
+      - key: VITE_USE_MOCK_API
+        value: "false"

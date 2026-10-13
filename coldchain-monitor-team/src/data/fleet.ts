@@ -1,0 +1,201 @@
+export type VehicleStatus = 'Normal' | 'Warning' | 'Critical';
+
+export interface FleetVehicle {
+  vehicleId: string;
+  route: string;
+  currentTemp: number;
+  ambientTemp: number;
+  humidity: number;
+  doorOpen: boolean;
+  compressorOn: boolean;
+  timestamp: string;
+  vehicleSpeedKph: number;
+  travelDurationHours: number;
+  tempRateOfChange: number;
+  cumulativeExposureC: number;
+  timeSinceLastExcursionMinutes: number;
+  tempDeviationFromSafeRangeC: number;
+  humidityDeviationPct: number;
+  rollingMeanTempC: number;
+  rollingTempVariance: number;
+  predicted15MinTemp: number;
+  predictedTemp: number;
+  excursionProbability: number;
+  spoilageRisk: number;
+  riskLevel: VehicleStatus;
+  status: VehicleStatus;
+  history: number[];
+  action: string;
+  message: string;
+}
+
+export const fleetVehicles: FleetVehicle[] = [
+  {
+    vehicleId: 'TRK001',
+    route: 'Salem → Chennai',
+    currentTemp: 5.2,
+    ambientTemp: 30,
+    humidity: 72,
+    doorOpen: false,
+    compressorOn: true,
+    timestamp: '2026-08-28T14:32:00Z',
+    vehicleSpeedKph: 52,
+    travelDurationHours: 8.4,
+    tempRateOfChange: 0.08,
+    cumulativeExposureC: 11.6,
+    timeSinceLastExcursionMinutes: 140,
+    tempDeviationFromSafeRangeC: -0.8,
+    humidityDeviationPct: 2,
+    rollingMeanTempC: 5.1,
+    rollingTempVariance: 0.12,
+    predicted15MinTemp: 5.5,
+    predictedTemp: 5.8,
+    excursionProbability: 0.09,
+    spoilageRisk: 0.12,
+    riskLevel: 'Normal',
+    status: 'Normal',
+    history: [5.0, 5.1, 5.2, 5.3, 5.2, 5.4, 5.2],
+    action: 'Continue monitoring and keep the refrigeration cycle stable.',
+    message: 'Temperature remains within the safe operating range.',
+  },
+  {
+    vehicleId: 'TRK002',
+    route: 'Coimbatore → Kochi',
+    currentTemp: 7.1,
+    ambientTemp: 31,
+    humidity: 76,
+    doorOpen: true,
+    compressorOn: true,
+    timestamp: '2026-08-28T14:32:00Z',
+    vehicleSpeedKph: 46,
+    travelDurationHours: 12.1,
+    tempRateOfChange: 0.18,
+    cumulativeExposureC: 22.4,
+    timeSinceLastExcursionMinutes: 18,
+    tempDeviationFromSafeRangeC: 1.1,
+    humidityDeviationPct: 8,
+    rollingMeanTempC: 6.8,
+    rollingTempVariance: 0.31,
+    predicted15MinTemp: 7.8,
+    predictedTemp: 8.4,
+    excursionProbability: 0.62,
+    spoilageRisk: 0.58,
+    riskLevel: 'Warning',
+    status: 'Warning',
+    history: [6.4, 6.7, 6.9, 7.0, 7.1, 7.6, 8.1],
+    action: 'Inspect the refrigeration system and verify door seals.',
+    message: 'The current temperature is safe, but the LSTM forecast is rising toward the warning band.',
+  },
+  {
+    vehicleId: 'TRK003',
+    route: 'Madurai → Chennai',
+    currentTemp: 8.2,
+    ambientTemp: 32,
+    humidity: 80,
+    doorOpen: true,
+    compressorOn: false,
+    timestamp: '2026-08-28T14:28:00Z',
+    vehicleSpeedKph: 39,
+    travelDurationHours: 9.3,
+    tempRateOfChange: 0.32,
+    cumulativeExposureC: 34.1,
+    timeSinceLastExcursionMinutes: 7,
+    tempDeviationFromSafeRangeC: 2.2,
+    humidityDeviationPct: 14,
+    rollingMeanTempC: 7.9,
+    rollingTempVariance: 0.68,
+    predicted15MinTemp: 9.0,
+    predictedTemp: 9.6,
+    excursionProbability: 0.88,
+    spoilageRisk: 0.86,
+    riskLevel: 'Critical',
+    status: 'Critical',
+    history: [7.2, 7.5, 7.8, 8.1, 8.4, 8.8, 9.3],
+    action: 'Dispatch maintenance and prioritize an immediate refrigeration intervention.',
+    message: 'Temperature is already above the critical threshold and is predicted to worsen quickly.',
+  },
+  {
+    vehicleId: 'TRK004',
+    route: 'Tirupur → Bengaluru',
+    currentTemp: 4.9,
+    ambientTemp: 29,
+    humidity: 68,
+    doorOpen: false,
+    compressorOn: true,
+    timestamp: '2026-08-28T14:25:00Z',
+    vehicleSpeedKph: 57,
+    travelDurationHours: 6.8,
+    tempRateOfChange: -0.04,
+    cumulativeExposureC: 8.2,
+    timeSinceLastExcursionMinutes: 210,
+    tempDeviationFromSafeRangeC: -1.1,
+    humidityDeviationPct: -4,
+    rollingMeanTempC: 5.1,
+    rollingTempVariance: 0.09,
+    predicted15MinTemp: 5.2,
+    predictedTemp: 5.4,
+    excursionProbability: 0.05,
+    spoilageRisk: 0.09,
+    riskLevel: 'Normal',
+    status: 'Normal',
+    history: [4.6, 4.8, 5.0, 5.1, 5.2, 5.0, 4.9],
+    action: 'No intervention required. Continue routine monitoring.',
+    message: 'Stable cabin conditions with no predicted temperature excursion.',
+  },
+  {
+    vehicleId: 'TRK005',
+    route: 'Erode → Hyderabad',
+    currentTemp: 7.8,
+    ambientTemp: 33,
+    humidity: 78,
+    doorOpen: true,
+    compressorOn: true,
+    timestamp: '2026-08-28T14:21:00Z',
+    vehicleSpeedKph: 43,
+    travelDurationHours: 10.5,
+    tempRateOfChange: 0.21,
+    cumulativeExposureC: 28.6,
+    timeSinceLastExcursionMinutes: 24,
+    tempDeviationFromSafeRangeC: 1.8,
+    humidityDeviationPct: 10,
+    rollingMeanTempC: 7.5,
+    rollingTempVariance: 0.42,
+    predicted15MinTemp: 8.3,
+    predictedTemp: 8.7,
+    excursionProbability: 0.71,
+    spoilageRisk: 0.64,
+    riskLevel: 'Warning',
+    status: 'Warning',
+    history: [6.9, 7.1, 7.4, 7.6, 7.9, 8.2, 8.5],
+    action: 'Check airflow and load distribution before the next interval.',
+    message: 'A gradual increase indicates rising thermal pressure within the cargo bay.',
+  },
+  {
+    vehicleId: 'TRK006',
+    route: 'Thanjavur → Kochi',
+    currentTemp: 6.3,
+    ambientTemp: 30,
+    humidity: 71,
+    doorOpen: false,
+    compressorOn: true,
+    timestamp: '2026-08-28T14:18:00Z',
+    vehicleSpeedKph: 49,
+    travelDurationHours: 7.2,
+    tempRateOfChange: 0.05,
+    cumulativeExposureC: 14.3,
+    timeSinceLastExcursionMinutes: 166,
+    tempDeviationFromSafeRangeC: 0.3,
+    humidityDeviationPct: 3,
+    rollingMeanTempC: 6.2,
+    rollingTempVariance: 0.08,
+    predicted15MinTemp: 6.6,
+    predictedTemp: 6.9,
+    excursionProbability: 0.11,
+    spoilageRisk: 0.17,
+    riskLevel: 'Normal',
+    status: 'Normal',
+    history: [6.1, 6.2, 6.1, 6.4, 6.3, 6.4, 6.5],
+    action: 'Keep current refrigeration settings unchanged.',
+    message: 'Operating range remains stable with minimal drift.',
+  },
+];
