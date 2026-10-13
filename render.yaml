@@ -3,7 +3,7 @@ services:
     name: coldguard-monitor
     runtime: node
     plan: free
-    buildCommand: npm ci --prefix backend && npm ci --prefix coldchain-monitor-team && npm --prefix coldchain-monitor-team run build
+    buildCommand: npm ci --prefix backend && npm ci --include=dev --prefix coldchain-monitor-team && npm --prefix coldchain-monitor-team run build
     startCommand: node backend/server.js
     healthCheckPath: /api/health
     envVars:
