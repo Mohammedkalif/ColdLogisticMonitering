@@ -8,7 +8,7 @@ import { ThemeProvider } from './ThemeProvider';
  */
 export function AppProviders({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider defaultTheme="dark">
+    <ThemeProvider defaultTheme="light">
       <SidebarProvider>{children}</SidebarProvider>
     </ThemeProvider>
   );

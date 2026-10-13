@@ -10,9 +10,9 @@ interface ThemeProviderProps {
 
 /**
  * Applies the theme class to `<html>` and persists the operator's choice.
- * Dark is the product default; light exists for warehouse/daylight use.
+ * Light is the product default; the operator's choice is persisted.
  */
-export function ThemeProvider({ children, defaultTheme = 'dark' }: ThemeProviderProps) {
+export function ThemeProvider({ children, defaultTheme = 'light' }: ThemeProviderProps) {
   const [theme, setStoredTheme] = useLocalStorage<ThemeMode>(STORAGE_KEYS.theme, defaultTheme);
 
   useEffect(() => {
